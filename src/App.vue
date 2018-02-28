@@ -1,13 +1,15 @@
 <template>
   <div id="app" class="container">
     <div class="row">
-      <customer-index></customer-index>
+      <!--customer-index></customer-index-->
+      <customer-show></customer-show>
     </div>
   </div>
 </template>
 
 <script>
   import CustomerIndex from './components/customer/Index.vue';
+  import CustomerShow from './components/customer/Show.vue';
 
   export default {
     name: 'app',
@@ -17,7 +19,8 @@
       }
     },
     components: {
-      CustomerIndex
+      CustomerIndex,
+      CustomerShow
     }
   }
 </script>
