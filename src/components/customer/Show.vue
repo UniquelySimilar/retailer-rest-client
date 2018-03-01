@@ -78,13 +78,14 @@
 
 <script>
     export default {
+        props: ['id'],
         data() {
             return {
                 customer: {}
             }
         },
         created() {
-            axios.get('http://laravel-retailer-rest.localhost/api/customers/1')
+            axios.get('http://laravel-retailer-rest.localhost/api/customers/' + this.id)
                 .then(response => {
                     this.customer = response.data;
                     //console.log(this.customer);

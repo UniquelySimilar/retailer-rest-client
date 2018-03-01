@@ -11,13 +11,9 @@ window.axios = require('axios');
 
 import App from './App.vue'
 
-const customerIndex = App.components.CustomerIndex;
-const customerShow = App.components.CustomerShow;
-//console.log(customerIndex);
-
 const routes = [
-  { path: '/', component: customerIndex },
-  { path: '/show', component: customerShow }
+  { path: '/', name: 'customerIndex', component: App.components.CustomerIndex },
+  { path: '/show/:id', name: 'customerShow', component: App.components.CustomerShow, props: true }
 ]
 
 const router = new VueRouter({

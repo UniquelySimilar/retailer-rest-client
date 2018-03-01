@@ -8,11 +8,7 @@
           <th>Contact First Name</th>
           <th>Contact Last Name</th>
           <th>Phone</th>
-          <th>Address Line 1</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Postal Code</th>
-          <th>Credit Limit</th>
+          <th>&nbsp;</th>
         </tr>
       </thead>
       <tbody>
@@ -21,11 +17,7 @@
           <td>{{ customer.contactFirstName }}</td>
           <td>{{ customer.contactLastName }}</td>
           <td>{{ customer.phone }}</td>
-          <td>{{ customer.addressLine1 }}</td>
-          <td>{{ customer.city }}</td>
-          <td>{{ customer.state }}</td>
-          <td>{{ customer.postalCode }}</td>
-          <td>{{ customer.creditLimit }}</td>
+          <td><router-link class="btn btn-default" :to="{ name: 'customerShow', params: { id: customer.id }}">Detail</router-link></td>
         </tr>
       </tbody>
     </table>

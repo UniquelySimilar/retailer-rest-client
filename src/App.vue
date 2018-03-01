@@ -3,7 +3,6 @@
     <p>
       <!-- use router-link component for navigation. -->
       <router-link to="/">Go to Index</router-link>
-      <router-link to="/show">Go to Show</router-link>
     </p>
     <div class="row">
       <!-- component matched by the route will render here -->
