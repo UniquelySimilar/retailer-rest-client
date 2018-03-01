@@ -1,8 +1,13 @@
 <template>
   <div id="app" class="container">
+    <p>
+      <!-- use router-link component for navigation. -->
+      <router-link to="/">Go to Index</router-link>
+      <router-link to="/show">Go to Show</router-link>
+    </p>
     <div class="row">
-      <!--customer-index></customer-index-->
-      <customer-show></customer-show>
+      <!-- component matched by the route will render here -->
+      <router-view></router-view>
     </div>
   </div>
 </template>
