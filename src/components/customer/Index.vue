@@ -12,6 +12,7 @@
           <th>Contact Last Name</th>
           <th>Phone</th>
           <th>&nbsp;</th>
+          <th>&nbsp;</th>
         </tr>
       </thead>
       <tbody>
@@ -21,7 +22,10 @@
           <td>{{ customer.contactLastName }}</td>
           <td>{{ customer.phone }}</td>
           <td>
-            <router-link class="btn btn-default" :to="{ name: 'customerShow', params: { id: customer.id }}">Detail</router-link>
+            <router-link class="btn btn-default" :to="{ name: 'customerShow', params: { id: customer.id }}">View</router-link>
+          </td>
+          <td>
+            <button class="btn btn-default" v-on:click="deleteCustomer(customer.id)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -34,6 +38,12 @@
     data() {
       return {
         customers: []
+      }
+    },
+    methods: {
+      deleteCustomer: function(id) {
+        alert('delete customer where ID = ' + id);
+
       }
     },
     created() {

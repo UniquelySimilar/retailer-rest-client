@@ -29,6 +29,14 @@
         </div>
         <div class="row">
             <div class="col-md-2 property-label">
+                <span>Phone:</span>
+            </div>
+            <div class="col-md-4">
+                <span>{{ customer.phone }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 property-label">
                 <span>Address Line 1:</span>
             </div>
             <div class="col-md-4">
@@ -57,14 +65,6 @@
             </div>
             <div class="col-md-4">
                 <span>{{ customer.postalCode }}</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 property-label">
-                <span>Phone:</span>
-            </div>
-            <div class="col-md-4">
-                <span>{{ customer.phone }}</span>
             </div>
         </div>
         <div class="row">
