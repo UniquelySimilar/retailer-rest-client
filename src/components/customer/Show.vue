@@ -1,6 +1,9 @@
 <template>
     <div id="customer-show">
-        <h2>Customer</h2>
+        <div>
+            <span class="component-heading">Customer</span>
+            <router-link class="btn btn-default" :to="{ name: 'customerIndex' }">Back to List</router-link>
+        </div>
         <div class="row">
             <div class="col-md-2 property-label">
                 <span>Customer Name:</span>

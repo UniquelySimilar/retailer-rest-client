@@ -13,7 +13,8 @@ import App from './App.vue'
 
 const routes = [
   { path: '/', name: 'customerIndex', component: App.components.CustomerIndex },
-  { path: '/show/:id', name: 'customerShow', component: App.components.CustomerShow, props: true }
+  { path: '/show/:id', name: 'customerShow', component: App.components.CustomerShow, props: true },
+  { path: '/create', name: 'customerCreate', component: App.components.CustomerCreate }
 ]
 
 const router = new VueRouter({

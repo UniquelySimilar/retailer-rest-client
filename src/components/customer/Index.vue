@@ -1,6 +1,9 @@
 <template>
   <div id="customer-index">
-    <h2>Customer List</h2>
+    <div>
+      <span class="component-heading">Customer List</span>
+      <router-link class="btn btn-default" :to="{ name: 'customerCreate' }">Create Customer</router-link>
+    </div>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -17,7 +20,9 @@
           <td>{{ customer.contactFirstName }}</td>
           <td>{{ customer.contactLastName }}</td>
           <td>{{ customer.phone }}</td>
-          <td><router-link class="btn btn-default" :to="{ name: 'customerShow', params: { id: customer.id }}">Detail</router-link></td>
+          <td>
+            <router-link class="btn btn-default" :to="{ name: 'customerShow', params: { id: customer.id }}">Detail</router-link>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -45,4 +50,5 @@
 </script>
 
 <style scoped>
+
 </style>
