@@ -127,6 +127,7 @@
                     .then(response => {
                         console.log('Response status code: ' + response.status);
                         console.log('Response status text: ' + response.statusText);
+                        // TODO: Redirect to index view
                     })
                     .catch(error => {
                         // TODO: Handle validation errors

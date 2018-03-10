@@ -25,7 +25,7 @@
             <router-link class="btn btn-default" :to="{ name: 'customerShow', params: { id: customer.id }}">View</router-link>
           </td>
           <td>
-            <button class="btn btn-default" v-on:click="deleteCustomer(customer.id)">Delete</button>
+            <button class="btn btn-default" v-on:click="deleteCustomer(customer.id, customer.customerName)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -41,8 +41,25 @@
       }
     },
     methods: {
-      deleteCustomer: function(id) {
-        alert('delete customer where ID = ' + id);
+      deleteCustomer: function (id, customerName) {
+        if (confirm('Delete customer ' + customerName + '?')) {
+          //console.log('delete customer confirmed');
+          axios.delete('http://laravel-retailer-rest.localhost/api/customers/' + id)
+            .then(response => {
+              //console.log('customer deleted');
+              // Find deleted customer in customers array
+              var deletedCustomerIndex = this.customers.findIndex(function (element) {
+                return element.id == id;
+              })
+              //console.log('deleted customer index: ' + deletedCustomerIndex);
+              // Remove deleted customer from customers array
+              this.customers.splice(deletedCustomerIndex, 1);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+
+        }
 
       }
     },
@@ -60,5 +77,4 @@
 </script>
 
 <style scoped>
-
 </style>
