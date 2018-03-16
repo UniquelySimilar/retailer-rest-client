@@ -4,7 +4,7 @@
       <span class="component-heading">Customer List</span>
       <router-link class="btn btn-default" :to="{ name: 'customerCreate' }">Create Customer</router-link>
     </div>
-    <table class="table table-striped">
+    <table id="customer-table" class="table table-striped">
       <thead>
         <tr>
           <th>Customer Name</th>
@@ -54,6 +54,8 @@
               //console.log('deleted customer index: ' + deletedCustomerIndex);
               // Remove deleted customer from customers array
               this.customers.splice(deletedCustomerIndex, 1);
+
+              // TODO: Remove associated row from DataTable and redraw
             })
             .catch(error => {
               console.log(error);
@@ -72,6 +74,10 @@
         .catch(error => {
           console.log(error);
         });
+    },
+    updated: function() {
+      //console.log('Index vue updated');
+      $('#customer-table').DataTable();
     }
   }
 </script>

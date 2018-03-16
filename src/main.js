@@ -9,6 +9,10 @@ require('bootstrap/dist/css/bootstrap.css');
 
 window.axios = require('axios');
 
+require('datatables.net');
+require('datatables.net-bs');
+require('datatables.net-bs/css/dataTables.bootstrap.css')
+
 import App from './App.vue'
 
 const routes = [
