@@ -4,6 +4,7 @@
       <span class="component-heading">Customer List</span>
       <router-link class="btn btn-default" :to="{ name: 'customerCreate' }">Create Customer</router-link>
     </div>
+    <hr>
     <table id="customer-table" class="table table-striped">
       <thead>
         <tr>
@@ -25,7 +26,7 @@
             <router-link class="btn btn-default" :to="{ name: 'customerShow', params: { id: customer.id }}">View</router-link>
           </td>
           <td>
-            <button class="btn btn-default" v-on:click="deleteCustomer(customer.id, customer.customerName)">Delete</button>
+            <button class="btn btn-default" v-on:click="deleteCustomer(customer.id, customer.customerName, $event)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -37,32 +38,37 @@
   export default {
     data() {
       return {
-        customers: []
+        customers: [],
+        customerTable: {}
       }
     },
     methods: {
-      deleteCustomer: function (id, customerName) {
+      deleteCustomer: function (id, customerName, event) {
+        //console.log(event);
+        var rowTarget = $(event.target).parents('tr');
+        //console.log(rowTarget);
+        var rowIndex = this.customerTable.row(rowTarget).index();
+        //console.log('selected row index: ' + rowIndex);
         if (confirm('Delete customer ' + customerName + '?')) {
           //console.log('delete customer confirmed');
           axios.delete('http://laravel-retailer-rest.localhost/api/customers/' + id)
             .then(response => {
               //console.log('customer deleted');
-              // Find deleted customer in customers array
+
+              // Remove associated row from DataTable
+              this.customerTable.row(rowTarget).remove().draw();
+
+              // Find and remove deleted customer from customers array
               var deletedCustomerIndex = this.customers.findIndex(function (element) {
                 return element.id == id;
               })
               //console.log('deleted customer index: ' + deletedCustomerIndex);
-              // Remove deleted customer from customers array
               this.customers.splice(deletedCustomerIndex, 1);
-
-              // TODO: Remove associated row from DataTable and redraw
             })
             .catch(error => {
               console.log(error);
             });
-
         }
-
       }
     },
     created() {
@@ -77,7 +83,7 @@
     },
     updated: function() {
       //console.log('Index vue updated');
-      $('#customer-table').DataTable();
+      this.customerTable = $('#customer-table').DataTable();
     }
   }
 </script>

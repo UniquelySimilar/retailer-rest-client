@@ -3,6 +3,7 @@
         <div>
             <span class="component-heading">New Customer</span>
         </div>
+        <hr>
         <form class="form-horizontal">
             <div class="form-group">
                 <label for="customer-name" class="col-sm-2 control-label">Customer Name</label>
@@ -125,19 +126,16 @@
                     creditLimit: self.creditLimit
                 })
                     .then(response => {
-                        console.log('Response status code: ' + response.status);
-                        console.log('Response status text: ' + response.statusText);
-                        // TODO: Redirect to index view
+                        //console.log('Response status code: ' + response.status);
+                        //console.log('Response status text: ' + response.statusText);
+                        // Redirect to index view
+                        this.$router.push({name: 'customerIndex'});
                     })
                     .catch(error => {
-                        // TODO: Handle validation errors
                         //console.log(error);
                         var response = error.response;
                         if (response.status == '400') {
                             self.validationErrors = response.data.validationErrors;
-                            // if (self.validationErrors.hasOwnProperty('customerName')) {
-                            //     console.log('validation errors contains customerName');
-                            // }
                         }
                     });
             }

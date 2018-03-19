@@ -3,6 +3,7 @@
         <div>
             <span class="component-heading">Customer</span>
         </div>
+        <hr>
         <div class="row">
             <div class="col-md-2 property-label">
                 <span>Customer Name:</span>
@@ -75,7 +76,7 @@
                 <span>{{ customer.creditLimit }}</span>
             </div>
         </div>
-        <div>
+        <div id="back-to-list">
             <router-link class="btn btn-default" :to="{ name: 'customerIndex' }">Back to List</router-link>
         </div>
     </div>
@@ -105,5 +106,13 @@
 <style scoped>
     .property-label {
         font-weight: bold;
+    }
+
+    div.row {
+        line-height: 2em;
+    }
+
+    #back-to-list {
+        margin-top: 1em;
     }
 </style>
