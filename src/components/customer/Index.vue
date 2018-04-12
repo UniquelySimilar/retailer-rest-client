@@ -6,84 +6,67 @@
     </div>
     <hr>
     <table id="customer-table" class="table table-striped">
-      <thead>
-        <tr>
-          <th>Customer Name</th>
-          <th>Contact First Name</th>
-          <th>Contact Last Name</th>
-          <th>Phone</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="customer in customers" v-bind:key="customer.id">
-          <td>{{ customer.customerName }}</td>
-          <td>{{ customer.contactFirstName }}</td>
-          <td>{{ customer.contactLastName }}</td>
-          <td>{{ customer.phone }}</td>
-          <td>
-            <router-link class="btn btn-default" :to="{ name: 'customerShow', params: { id: customer.id }}">View</router-link>
-          </td>
-          <td>
-            <button class="btn btn-default" v-on:click="deleteCustomer(customer.id, customer.customerName, $event)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
     </table>
   </div>
 </template>
 
 <script>
+  // TODO: Do initial data retrieve with Vue component, then let DataTable manage it.
+  var customerTable = {};
+  var customers = [];
+
   export default {
     data() {
       return {
-        customers: [],
-        customerTable: {}
       }
     },
-    methods: {
-      deleteCustomer: function (id, customerName, event) {
-        //console.log(event);
-        var rowTarget = $(event.target).parents('tr');
-        //console.log(rowTarget);
-        var rowIndex = this.customerTable.row(rowTarget).index();
-        //console.log('selected row index: ' + rowIndex);
-        if (confirm('Delete customer ' + customerName + '?')) {
-          //console.log('delete customer confirmed');
-          axios.delete('http://laravel-retailer-rest.localhost/api/customers/' + id)
-            .then(response => {
-              //console.log('customer deleted');
+    // methods: {
+    //   deleteCustomer: function (id, customerName, event) {
+    //     //console.log(event);
+    //     var rowTarget = $(event.target).parents('tr');
+    //     //console.log(rowTarget);
+    //     var rowIndex = this.customerTable.row(rowTarget).index();
+    //     //console.log('selected row index: ' + rowIndex);
+    //     if (confirm('Delete customer ' + customerName + '?')) {
+    //       //console.log('delete customer confirmed');
+    //       axios.delete('http://laravel-retailer-rest.localhost/api/customers/' + id)
+    //         .then(response => {
+    //           //console.log('customer deleted');
 
-              // Remove associated row from DataTable
-              this.customerTable.row(rowTarget).remove().draw();
+    //           // Remove associated row from DataTable
+    //           this.customerTable.row(rowTarget).remove().draw();
 
-              // Find and remove deleted customer from customers array
-              var deletedCustomerIndex = this.customers.findIndex(function (element) {
-                return element.id == id;
-              })
-              //console.log('deleted customer index: ' + deletedCustomerIndex);
-              this.customers.splice(deletedCustomerIndex, 1);
-            })
-            .catch(error => {
-              console.log(error);
-            });
-        }
-      }
-    },
-    created() {
+    //           // Find and remove deleted customer from customers array
+    //           var deletedCustomerIndex = this.customers.findIndex(function (element) {
+    //             return element.id == id;
+    //           })
+    //           //console.log('deleted customer index: ' + deletedCustomerIndex);
+    //           this.customers.splice(deletedCustomerIndex, 1);
+    //         })
+    //         .catch(error => {
+    //           console.log(error);
+    //         });
+    //     }
+    //   }
+    // },
+    mounted() {
       axios.get('http://laravel-retailer-rest.localhost/api/customers')
         .then(response => {
-          this.customers = response.data;
-          //console.log(this.customers);
+          customers = response.data;
+          console.log(customers);
+          customerTable = $('#customer-table').DataTable({
+            data: customers,
+            columns: [
+              { title: "Id", data: "id"},
+              { title: "Customer", data: "customerName"},
+              { title: "Contact Name", data: "contactFullName"},
+              { title: "Phone", data: "phone"}
+            ]
+          });
         })
         .catch(error => {
           console.log(error);
         });
-    },
-    updated: function() {
-      //console.log('Index vue updated');
-      this.customerTable = $('#customer-table').DataTable();
     }
   }
 </script>
