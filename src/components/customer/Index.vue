@@ -11,64 +11,89 @@
 </template>
 
 <script>
-  // TODO: Do initial data retrieve with Vue component, then let DataTable manage it.
+  // Do initial data retrieve with Vue component in order to create DataTable, then DataTable will manage data.
   var customerTable = {};
-  var customers = [];
 
   export default {
-    data() {
-      return {
-      }
-    },
-    // methods: {
-    //   deleteCustomer: function (id, customerName, event) {
-    //     //console.log(event);
-    //     var rowTarget = $(event.target).parents('tr');
-    //     //console.log(rowTarget);
-    //     var rowIndex = this.customerTable.row(rowTarget).index();
-    //     //console.log('selected row index: ' + rowIndex);
-    //     if (confirm('Delete customer ' + customerName + '?')) {
-    //       //console.log('delete customer confirmed');
-    //       axios.delete('http://laravel-retailer-rest.localhost/api/customers/' + id)
-    //         .then(response => {
-    //           //console.log('customer deleted');
-
-    //           // Remove associated row from DataTable
-    //           this.customerTable.row(rowTarget).remove().draw();
-
-    //           // Find and remove deleted customer from customers array
-    //           var deletedCustomerIndex = this.customers.findIndex(function (element) {
-    //             return element.id == id;
-    //           })
-    //           //console.log('deleted customer index: ' + deletedCustomerIndex);
-    //           this.customers.splice(deletedCustomerIndex, 1);
-    //         })
-    //         .catch(error => {
-    //           console.log(error);
-    //         });
-    //     }
-    //   }
-    // },
     mounted() {
+      var thisComponent = this;
+
       axios.get('http://laravel-retailer-rest.localhost/api/customers')
-        .then(response => {
-          customers = response.data;
-          console.log(customers);
-          customerTable = $('#customer-table').DataTable({
-            data: customers,
-            columns: [
-              { title: "Id", data: "id"},
-              { title: "Customer", data: "customerName"},
-              { title: "Contact Name", data: "contactFullName"},
-              { title: "Phone", data: "phone"}
-            ]
-          });
-        })
-        .catch(error => {
-          console.log(error);
+      .then(response => {
+        var customers = response.data;
+        //console.log(customers);
+
+        // Create DataTable
+        customerTable = $('#customer-table').DataTable({
+          data: customers,
+          columns: [
+            { title: "Id", data: "id"},
+            { title: "Customer", data: "customerName"},
+            { title: "Contact Name", data: "contactFullName"},
+            {
+              title: "Phone",
+              data: "phone",
+              orderable: false
+            },
+            {
+              title: "",
+              data: null,
+              orderable: false,
+              searchable: false,
+              defaultContent: "<button class=\"btn btn-default show-btn\">Show</button>"
+            },
+            {
+              title: "",
+              data: null,
+              orderable: false,
+              searchable: false,
+              defaultContent: "<button class=\"btn btn-default delete-btn\">Delete</button>"
+            }
+          ]
         });
-    }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+      // Create button event handlers after DataTable initialization
+      $('#customer-table').on( 'init.dt', function () {
+        //console.log('Table initialization complete');
+
+        // Click handler for Delete button
+        $('#customer-table tbody').on( 'click', 'button.delete-btn', function () {
+          var currentRow = customerTable.row( $(this).parents('tr') );
+          var rowData = currentRow.data();
+          //console.log(rowData)
+
+          // Delete customer from database
+          if (true == confirm('Delete Customer?')) {
+            axios.delete('http://laravel-retailer-rest.localhost/api/customers/' + rowData.id)
+            .then(response => {
+              // Remove associated row
+              currentRow.remove().draw();
+            })
+            .catch(error => {
+              console.log(error);
+            });
+          }
+        });
+
+        // Click handler for Show button
+        $('#customer-table tbody').on( 'click', 'button.show-btn', function () {
+          var currentRow = customerTable.row( $(this).parents('tr') );
+          var rowData = currentRow.data();
+          //console.log('Show Customer details for ID: ' + rowData.id);
+
+          thisComponent.$router.push({ name: 'customerShow', params: { id: rowData.id }});
+        });
+
+      });
+
+    } // end mounted()
   }
+
+
 </script>
 
 <style scoped>
