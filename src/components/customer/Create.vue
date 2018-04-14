@@ -5,13 +5,9 @@
         </div>
         <hr>
         <form class="form-horizontal">
-            <div class="form-group">
-                <label for="customer-name" class="col-sm-2 control-label">Customer Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="customer-name" v-model="customerName">
-                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('customerName')">{{ '* ' + validationErrors.customerName[0] }}</span>
-                </div>
-            </div>
+            <form-input inputId="customer-name" inputLabel="Customer Name" v-bind:initialInputValue="customerName"
+                v-bind:validationErrors="validationErrors" validationPropertyName="customerName" v-on:input-changed="customerNameChanged"></form-input>
+
             <div class="form-group">
                 <label for="contact-first-name" class="col-sm-2 control-label">Contact First Name</label>
                 <div class="col-sm-10">
@@ -87,6 +83,8 @@
 </template>
 
 <script>
+    import FormInput from './FormInput.vue';
+
     export default {
         data() {
             return {
@@ -107,9 +105,10 @@
             }
         },
         methods: {
+            customerNameChanged(event) {
+                this.customerName = event;
+            },
             submitCustomerForm: function (event) {
-                //console.log('customer form submitted');
-                //console.log(this.customer);
                 var self = this;
                 axios.post('http://laravel-retailer-rest.localhost/api/customers', {
                     customerName: self.customerName,
@@ -139,6 +138,9 @@
                         }
                     });
             }
+        },
+        components: {
+            FormInput
         }
     }
 
