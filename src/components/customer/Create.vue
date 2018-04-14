@@ -9,70 +9,70 @@
                 <label for="customer-name" class="col-sm-2 control-label">Customer Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="customer-name" v-model="customerName">
-                    <span style="color: red;" v-if="validationErrors.hasOwnProperty('customerName')">{{ '* ' + validationErrors.customerName[0] }}</span>
+                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('customerName')">{{ '* ' + validationErrors.customerName[0] }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="contact-first-name" class="col-sm-2 control-label">Contact First Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="contact-first-name" v-model="contactFirstName">
-                    <span style="color: red;" v-if="validationErrors.hasOwnProperty('contactFirstName')">{{ '* ' + validationErrors.contactFirstName[0] }}</span>
+                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('contactFirstName')">{{ '* ' + validationErrors.contactFirstName[0] }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="contact-last-name" class="col-sm-2 control-label">Contact Last Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="contact-last-name" v-model="contactLastName">
-                    <span style="color: red;" v-if="validationErrors.hasOwnProperty('contactLastName')">{{ '* ' + validationErrors.contactLastName[0] }}</span>
+                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('contactLastName')">{{ '* ' + validationErrors.contactLastName[0] }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="phone" class="col-sm-2 control-label">Phone</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="phone" v-model="phone">
-                    <span style="color: red;" v-if="validationErrors.hasOwnProperty('phone')">{{ '* ' + validationErrors.phone[0] }}</span>
+                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('phone')">{{ '* ' + validationErrors.phone[0] }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="addressLine1" class="col-sm-2 control-label">Address Line 1</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="addressLine1" v-model="addressLine1">
-                    <span style="color: red;" v-if="validationErrors.hasOwnProperty('addressLine1')">{{ '* ' + validationErrors.addressLine1[0] }}</span>
+                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('addressLine1')">{{ '* ' + validationErrors.addressLine1[0] }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="addressLine2" class="col-sm-2 control-label">Address Line 2</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="addressLine2" v-model="addressLine2">
-                    <span style="color: red;" v-if="validationErrors.hasOwnProperty('addressLine2')">{{ '* ' + validationErrors.addressLine2[0] }}</span>
+                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('addressLine2')">{{ '* ' + validationErrors.addressLine2[0] }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="city" class="col-sm-2 control-label">City</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="city" v-model="city">
-                    <span style="color: red;" v-if="validationErrors.hasOwnProperty('city')">{{ '* ' + validationErrors.city[0] }}</span>
+                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('city')">{{ '* ' + validationErrors.city[0] }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="state" class="col-sm-2 control-label">State</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="state" v-model="state">
-                    <span style="color: red;" v-if="validationErrors.hasOwnProperty('state')">{{ '* ' + validationErrors.state[0] }}</span>
+                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('state')">{{ '* ' + validationErrors.state[0] }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="postalCode" class="col-sm-2 control-label">Postal Code</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="postalCode" v-model="postalCode">
-                    <span style="color: red;" v-if="validationErrors.hasOwnProperty('postalCode')">{{ '* ' + validationErrors.postalCode[0] }}</span>
+                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('postalCode')">{{ '* ' + validationErrors.postalCode[0] }}</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="creditLimit" class="col-sm-2 control-label">Credit Limit</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="creditLimit" v-model="creditLimit">
-                    <span style="color: red;" v-if="validationErrors.hasOwnProperty('creditLimit')">{{ '* ' + validationErrors.creditLimit[0] }}</span>
+                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('creditLimit')">{{ '* ' + validationErrors.creditLimit[0] }}</span>
                 </div>
             </div>
 
@@ -145,4 +145,7 @@
 </script>
 
 <style scoped>
+    .validation-error {
+        color: red;
+    }
 </style>
