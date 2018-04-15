@@ -8,69 +8,32 @@
             <form-input inputId="customer-name" inputLabel="Customer Name" v-bind:initialInputValue="customerName"
                 v-bind:validationErrors="validationErrors" validationPropertyName="customerName" v-on:input-changed="customerNameChanged"></form-input>
 
-            <div class="form-group">
-                <label for="contact-first-name" class="col-sm-2 control-label">Contact First Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="contact-first-name" v-model="contactFirstName">
-                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('contactFirstName')">{{ '* ' + validationErrors.contactFirstName[0] }}</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="contact-last-name" class="col-sm-2 control-label">Contact Last Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="contact-last-name" v-model="contactLastName">
-                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('contactLastName')">{{ '* ' + validationErrors.contactLastName[0] }}</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="phone" class="col-sm-2 control-label">Phone</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="phone" v-model="phone">
-                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('phone')">{{ '* ' + validationErrors.phone[0] }}</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="addressLine1" class="col-sm-2 control-label">Address Line 1</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="addressLine1" v-model="addressLine1">
-                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('addressLine1')">{{ '* ' + validationErrors.addressLine1[0] }}</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="addressLine2" class="col-sm-2 control-label">Address Line 2</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="addressLine2" v-model="addressLine2">
-                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('addressLine2')">{{ '* ' + validationErrors.addressLine2[0] }}</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="city" class="col-sm-2 control-label">City</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="city" v-model="city">
-                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('city')">{{ '* ' + validationErrors.city[0] }}</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="state" class="col-sm-2 control-label">State</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="state" v-model="state">
-                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('state')">{{ '* ' + validationErrors.state[0] }}</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="postalCode" class="col-sm-2 control-label">Postal Code</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="postalCode" v-model="postalCode">
-                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('postalCode')">{{ '* ' + validationErrors.postalCode[0] }}</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="creditLimit" class="col-sm-2 control-label">Credit Limit</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="creditLimit" v-model="creditLimit">
-                    <span class="validation-error" v-if="validationErrors.hasOwnProperty('creditLimit')">{{ '* ' + validationErrors.creditLimit[0] }}</span>
-                </div>
-            </div>
+            <form-input inputId="contact-first-name" inputLabel="Contact First Name" v-bind:initialInputValue="contactFirstName"
+                v-bind:validationErrors="validationErrors" validationPropertyName="contactFirstName" v-on:input-changed="contactFirstNameChanged"></form-input>
+
+            <form-input inputId="contact-last-name" inputLabel="Contact Last Name" v-bind:initialInputValue="contactLastName"
+                v-bind:validationErrors="validationErrors" validationPropertyName="contactLastName" v-on:input-changed="contactLastNameChanged"></form-input>
+
+            <form-input inputId="phone" inputLabel="Phone" v-bind:initialInputValue="phone"
+                v-bind:validationErrors="validationErrors" validationPropertyName="phone" v-on:input-changed="phoneChanged"></form-input>
+
+            <form-input inputId="address-line-1" inputLabel="Address Line 1" v-bind:initialInputValue="addressLine1"
+                v-bind:validationErrors="validationErrors" validationPropertyName="addressLine1" v-on:input-changed="addressLine1Changed"></form-input>
+
+            <form-input inputId="address-line-2" inputLabel="Address Line 2" v-bind:initialInputValue="addressLine2"
+                v-bind:validationErrors="validationErrors" validationPropertyName="addressLine2" v-on:input-changed="addressLine2Changed"></form-input>
+
+            <form-input inputId="city" inputLabel="City" v-bind:initialInputValue="city"
+                v-bind:validationErrors="validationErrors" validationPropertyName="city" v-on:input-changed="cityChanged"></form-input>
+
+            <form-input inputId="state" inputLabel="State" v-bind:initialInputValue="state"
+                v-bind:validationErrors="validationErrors" validationPropertyName="state" v-on:input-changed="stateChanged"></form-input>
+
+            <form-input inputId="postal-code" inputLabel="Postal Code" v-bind:initialInputValue="postalCode"
+                v-bind:validationErrors="validationErrors" validationPropertyName="postalCode" v-on:input-changed="postalCodeChanged"></form-input>
+
+            <form-input inputId="credit-limit" inputLabel="Credit Limit" v-bind:initialInputValue="creditLimit"
+                v-bind:validationErrors="validationErrors" validationPropertyName="creditLimit" v-on:input-changed="creditLimitChanged"></form-input>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
@@ -91,22 +54,46 @@
                 customerName: '',
                 contactFirstName: '',
                 contactLastName: '',
-                // Default for initial testing
-                phone: '303-555-1212',
-                addressLine1: '1234 Main St',
+                phone: '',
+                addressLine1: '',
                 addressLine2: '',
-                city: 'Louisville',
-                state: 'Colorado',
-                postalCode: '80027',
-                country: 'USA',
-                salesRepEmployeeNumber: '',
-                creditLimit: '1000.00',
+                city: '',
+                state: '',
+                postalCode: '',
+                creditLimit: '',
                 validationErrors: {}
             }
         },
         methods: {
             customerNameChanged(event) {
                 this.customerName = event;
+            },
+            contactFirstNameChanged(event) {
+                this.contactFirstName = event;
+            },
+            contactLastNameChanged(event) {
+                this.contactLastName = event;
+            },
+            phoneChanged(event) {
+                this.phone = event;
+            },
+            addressLine1Changed(event) {
+                this.addressLine1 = event;
+            },
+            addressLine2Changed(event) {
+                this.addressLine2 = event;
+            },
+            cityChanged(event) {
+                this.city = event;
+            },
+            stateChanged(event) {
+                this.state = event;
+            },
+            postalCodeChanged(event) {
+                this.postalCode = event;
+            },
+            creditLimitChanged(event) {
+                this.creditLimit = event;
             },
             submitCustomerForm: function (event) {
                 axios.post('http://laravel-retailer-rest.localhost/api/customers', {
@@ -133,7 +120,7 @@
                         //console.log(error);
                         var response = error.response;
                         if (response.status == '400') {
-                            self.validationErrors = response.data.validationErrors;
+                            this.validationErrors = response.data.validationErrors;
                         }
                     });
             }
