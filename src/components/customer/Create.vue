@@ -109,20 +109,19 @@
                 this.customerName = event;
             },
             submitCustomerForm: function (event) {
-                var self = this;
                 axios.post('http://laravel-retailer-rest.localhost/api/customers', {
-                    customerName: self.customerName,
-                    contactFirstName: self.contactFirstName,
-                    contactLastName: self.contactLastName,
-                    phone: self.phone,
-                    addressLine1: self.addressLine1,
-                    addressLine2: self.addressLine2,
-                    city: self.city,
-                    state: self.state,
-                    postalCode: self.postalCode,
-                    country: self.country,
-                    salesRepEmployeeNumber: self.salesRepEmployeeNumber,
-                    creditLimit: self.creditLimit
+                    customerName: this.customerName,
+                    contactFirstName: this.contactFirstName,
+                    contactLastName: this.contactLastName,
+                    phone: this.phone,
+                    addressLine1: this.addressLine1,
+                    addressLine2: this.addressLine2,
+                    city: this.city,
+                    state: this.state,
+                    postalCode: this.postalCode,
+                    country: this.country,
+                    salesRepEmployeeNumber: this.salesRepEmployeeNumber,
+                    creditLimit: this.creditLimit
                 })
                     .then(response => {
                         //console.log('Response status code: ' + response.status);
