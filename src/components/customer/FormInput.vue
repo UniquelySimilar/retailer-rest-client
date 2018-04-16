@@ -2,7 +2,7 @@
     <div class="form-group">
         <label v-bind:for="inputId" class="col-sm-2 control-label">{{ inputLabel }}</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" v-bind:id="inputId" v-model="inputValue" v-on:keyup="emitInputEvent">
+            <input type="text" class="form-control" v-bind:id="inputId" v-model="inputValue">
             <span class="validation-error" v-if="hasValidationError">{{ '* ' + validationError }}</span>
         </div>
     </div>
@@ -10,11 +10,6 @@
 
 <script>
     export default {
-        data() {
-            return {
-                inputValue: this.initialInputValue
-            }
-        },
         props: {
             inputId: {
                 type: String,
@@ -25,7 +20,6 @@
                 required: true
             },
             initialInputValue: {
-                type: String,
                 required: true
             },
             validationErrors: {
@@ -38,16 +32,19 @@
             }
         },
         computed: {
+            inputValue: {
+                get() {
+                    return this.initialInputValue;
+                },
+                set(newValue) {
+                    this.$emit('input-changed', newValue);
+                }
+            },
             hasValidationError() {
                 return this.validationErrors.hasOwnProperty(this.validationPropertyName);
             },
             validationError() {
                 return this.validationErrors[this.validationPropertyName][0];
-            }
-        },
-        methods: {
-            emitInputEvent() {
-                this.$emit('input-changed', this.inputValue);
             }
         }
     }

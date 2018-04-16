@@ -47,6 +47,13 @@
               data: null,
               orderable: false,
               searchable: false,
+              defaultContent: "<button class=\"btn btn-default edit-btn\">Edit</button>"
+            },
+            {
+              title: "",
+              data: null,
+              orderable: false,
+              searchable: false,
               defaultContent: "<button class=\"btn btn-default delete-btn\">Delete</button>"
             }
           ]
@@ -59,6 +66,24 @@
       // Create button event handlers after DataTable initialization
       $('#customer-table').on( 'init.dt', function () {
         //console.log('Table initialization complete');
+
+        // Click handler for Show button
+        $('#customer-table tbody').on( 'click', 'button.show-btn', function () {
+          var currentRow = customerTable.row( $(this).parents('tr') );
+          var rowData = currentRow.data();
+          //console.log('Show Customer details for ID: ' + rowData.id);
+
+          thisComponent.$router.push({ name: 'customerShow', params: { id: rowData.id }});
+        });
+
+        // Click handler for Edit button
+        $('#customer-table tbody').on( 'click', 'button.edit-btn', function () {
+          var currentRow = customerTable.row( $(this).parents('tr') );
+          var rowData = currentRow.data();
+          //console.log('Edit Customer for ID: ' + rowData.id);
+
+          thisComponent.$router.push({ name: 'customerEdit', params: { id: rowData.id }});
+        });
 
         // Click handler for Delete button
         $('#customer-table tbody').on( 'click', 'button.delete-btn', function () {
@@ -79,16 +104,7 @@
           }
         });
 
-        // Click handler for Show button
-        $('#customer-table tbody').on( 'click', 'button.show-btn', function () {
-          var currentRow = customerTable.row( $(this).parents('tr') );
-          var rowData = currentRow.data();
-          //console.log('Show Customer details for ID: ' + rowData.id);
-
-          thisComponent.$router.push({ name: 'customerShow', params: { id: rowData.id }});
-        });
-
-      });
+      }); // end 'init.dt' handler
 
     } // end mounted()
   }
