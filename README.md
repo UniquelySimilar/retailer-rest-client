@@ -1,19 +1,8 @@
-# retailer-rest-client
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
-# retailer-rest-client
+# REST API Client Application built with Vue.js
+## Built as a client application for my [Laravel REST API project] (https://github.com/UniquelySimilar/laravel-retailer-rest)
+* Vue CLI
+* Webpack
+* Single file components
+* Passing data via Props and Events
+* Index vue component includes an integrated DataTable
+* Vue router
