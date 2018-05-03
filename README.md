@@ -1,5 +1,5 @@
 # REST API Client Application built with Vue.js
-## Built as a client application for my [Laravel REST API project] (https://github.com/UniquelySimilar/laravel-retailer-rest)
+## Built as a client application for my [Laravel REST API project](https://github.com/UniquelySimilar/laravel-retailer-rest)
 * Vue CLI
 * Webpack
 * Single file components
